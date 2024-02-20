@@ -1,0 +1,46 @@
+Coping with changing requirements : 
+	• Filter green apples 
+	public static List<Apple> filterApplesByColor (List<Apple> inventory){
+	        List<Apple> result = new ArrayList<>();
+	        for(Apple apple : inventory){
+	            if(apple.getAppleColour().equalsIgnoreCase("Green")){
+	                result.add(apple);
+	            }
+	        }
+	      return result ;
+	    }
+	• Now farmer wants to filter any color apple
+	 public static List<Apple> filterApplesByColor (List<Apple> inventory, String colour){
+	        List<Apple> result = new ArrayList<>();
+	        for(Apple apple : inventory){
+	            if(apple.getAppleColour().equalsIgnoreCase(colour)){
+	                result.add(apple);
+	            }
+	        }
+	      return result ;
+	    }
+	
+	• Example of usage 
+	List<Apple> greenApples =  filterApplesByColor (inventory,"green");
+	List<Apple> redApples =  filterApplesByColor (inventory,"red");
+	
+	• Now farmer wants both colour and weight to filter apples
+	public static List<Apple> greenApplesList (List<Apple> inventory, String colour, int weight , boolean flag){
+	        List<Apple> result = new ArrayList<>();
+	        for(Apple apple : inventory){
+	            if((flag && apple.getAppleColour().equalsIgnoreCase(colour)) ||
+	            (!flag && apple.getWeight() > weight)) {
+	                result.add(apple);
+	            }
+	        }
+	      return result ;
+	    }
+	
+	Example :
+	List<Apple> greenApples = filterApples(inventory, "green", 0, true); 
+	List<Apple> heavyApples = filterApples(inventory, "", 150, false);
+	
+	NOTE : Above approach is bad because if the farmer asked any other filter condition then we have no flexibility in our code to do so.
+	Such situations can be handled by  behaviour parametrization.
+	
+
